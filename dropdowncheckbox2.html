@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Select Dropdown with Checkboxes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 200px;
+        }
+        .dropdown-toggle {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background-color: white;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            width: 100%;
+            border: 1px solid #ccc;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .dropdown-menu label {
+            display: block;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .dropdown-menu label:hover {
+            background-color: #f1f1f1;
+        }
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+     
+
+
+
+    <div class="dropdown">
+        <div class="dropdown-toggle" onclick="toggleDropdown()">Select Options</div>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <option  type="checkbox" value="passport">Passport</option>
+            <option value="evisa">eVisa</option>
+            <option value="ni_number">NI number</option>
+            <option value="share_code">Share code</option> 
+
+
+
+        </div>
+    </div>
+
+
+
+    
+<script>
+    function toggleDropdown() {
+        document.getElementById("dropdownMenu").classList.toggle("show");
+    }
+
+    function handleCheckboxClick() {
+        let checkboxes = document.querySelectorAll(".dropdown-menu input[type='checkbox']");
+        let selectedValues = [];
+
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                selectedValues.push(checkbox.value);
+            }
+        });
+
+        if (selectedValues.length > 0) {
+            console.log("Selected Items: " + selectedValues.join(", "));
+        } else {
+            console.log("No items selected.");
+        }
+    }
+
+    // Close dropdown when clicking outside
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-toggle') && !event.target.matches('.dropdown-menu input[type="checkbox"]')) {
+            document.getElementById("dropdownMenu").classList.remove("show");
+        }
+    }
+</script>
+
+</body>
+</html>

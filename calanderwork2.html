@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <!-- calander work start -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.css' rel='stylesheet' />
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+  <style>
+    .random-dates-box {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 20px;
+      width: 200px;
+    }
+    .random-date {
+      margin: 5px 0;
+      padding: 5px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+    }
+    .random-date:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <div id='calendar'></div>
+  <div id='random-dates' class='random-dates-box'></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        timeZone: 'UTC',
+        height: '500px',
+      });
+      calendar.render();
+
+      var randomDatesEl = document.getElementById('random-dates');
+      var randomDates = generateRandomDates(4);
+      randomDates.forEach(function(date) {
+        var dateEl = document.createElement('div');
+        dateEl.textContent = date.toISOString().split('T')[0];
+        dateEl.className = 'random-date';
+        dateEl.addEventListener('click', function() {
+          calendar.gotoDate(date);
+        });
+        randomDatesEl.appendChild(dateEl);
+      });
+    });
+
+    function generateRandomDates(count) {
+      var dates = [];
+      for (var i = 0; i < count; i++) {
+        var date = new Date();
+        date.setMonth(Math.floor(Math.random() * 12)); // Random month from January to December
+        date.setDate(Math.floor(Math.random() * 28) + 1); // Random day from 1 to 28 to avoid invalid dates
+        dates.push(date);
+      }
+      return dates;
+    }
+  </script>
+  <!-- calander work end -->
+
+<Div id=dropdown
+
+
+</Div>
+
+</body>
+</html>
